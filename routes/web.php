@@ -21,6 +21,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/sym', function () {
+    $target = '/home/lifespr3/test.lifespringminna.sch.ng/umbrella-aca/storage';
+
+    $shortcut = '/home/lifespr3/test.lifespringminna.sch.ng/';
+
+    symlink($target, $shortcut);
+});
+
 Route::get('/config', function () {
     dd(Config::find(9)->data);
 });
