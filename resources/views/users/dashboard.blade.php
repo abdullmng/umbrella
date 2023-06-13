@@ -1,10 +1,24 @@
 @extends('layouts.users')
-@section('title', 'Dashboard')
+@section('title', 'My Account')
 @section('content')
 <div class="row justify-content-md-center mb-5">
     <div class="col-md-8">
       <div class="text-center">
-        <img class="avatar avatar-xxl avatar-circle mb-3" src="/assets/img/160x160/img10.jpg" alt="Image Description">
+        @if ($errors->any())
+          @foreach ($errors->all() as   $err)
+            <div class="alert alert-soft-danger">{{ $err }}</div>
+          @endforeach
+        @endif
+        <img class="avatar avatar-xxl avatar-circle mb-3 {{ is_null($user->image) ? 'pic' : '' }}" src="{{ $user->image ?? '/assets/img/160x160/img10.jpg' }}" alt="Image Description">
+        <div style="display: none" class="mb-3 form">
+            <form action="" enctype="multipart/form-data" method="post">
+              @csrf
+              <div class="input-group">
+                <input type="file" name="image" id="image" class="form-control">
+                <button class="btn btn-primary">Upload</button>
+              </div>
+            </form>
+        </div>
           
         <div class="mb-4">
           <h3>{{ $user->name }}</h3>
@@ -12,15 +26,15 @@
           <p>
             <div id="copy-result"></div>
             <div class="input-group">
-                <input type="text" id="link" class="form-control" value="https://{{ request()->getHost().'/users/register?ref='.$user->username }}">
+                <input type="text" id="link" class="form-control" value="https://{{ request()->getHost().'/users/register?ref='.$user->username }}" readonly>
                 <button class="btn btn-primary cp" id="cp">Copy</button>
                 <div id="copy-result"></div>
             </div>
           </p>
         </div>
         
-        <a href="/users/bank" class="btn btn-outline-primary">My Bank Info</a>
-        <a href="/users/socials" class="btn btn-outline-info">My Social Media profiles</a>
+        <a href="/users/bank" class="btn btn-outline-primary btn-sm">My Bank Info</a>
+        <a href="/users/socials" class="btn btn-outline-info btn-sm">My Social Media profiles</a>
       </div>
     </div>
     <!-- End Col -->
@@ -31,7 +45,7 @@
       <div class="text-center">
         <div class="mb-4">
             <h4>Earnings Table</h4>
-            <div class="table-responsive">
+            <div class="table-responsive mb-4">
                 <table class="table table-striped">
                     <tr>
                         <th>Sales Commission (NGN)</th>
@@ -46,6 +60,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
+            <div class="mb-4 text-center">
+              <a href="/users/activity" class="btn btn-outline-success btn-sm">Activity History</a>
             </div>
         </div>
       </div>
@@ -91,6 +108,10 @@
       setTimeout(() => {
         document.getElementById('copy-result').innerHTML = ""
       }, 2000);
+    })
+
+    $('.pic').click(function () {
+      $('.form').show()
     })
   </script>
 @endsection

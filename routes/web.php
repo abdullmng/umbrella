@@ -51,11 +51,13 @@ Route::prefix('users')->group(function () {
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/bank', [UserController::class, 'bank'])->name('user.bank');
         Route::get('/socials', [UserController::class, 'socials'])->name('user.socials');
+        Route::get('/activity', [UserController::class, 'activities'])->name('user.activities');
         Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 
         //
         Route::post('/bank', [UserController::class, 'updateBank'])->name('user.update_bank');
         Route::post('/socials', [UserSocialController::class, 'store'])->name('user.store_socials');
+        Route::post('/dashboard', [UserController::class, 'upload'])->name('user.upload');
     });
 
 });

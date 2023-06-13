@@ -100,6 +100,10 @@
   <main id="content" role="main">
     <!-- User Profile -->
     <div class="container content-space-2">
+      <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
+        <h1 class="display-4">@yield('title')</h1>
+        <p class="lead">@yield('page-desc')</p>
+      </div>
       @yield('content')
       <!-- End Row -->
     </div>

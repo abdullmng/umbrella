@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -183,5 +184,26 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect(route('user.login'));
+    }
+
+    public function activities()
+    {
+        $earnings = auth()->user()->earnings;
+        return view('users.activity', ['earnings' => $earnings]);
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|max:104'
+        ]);
+        $path = $request->file('image')->store('public/images');
+        $user = auth()->user();
+
+        $url = Storage::url($path);
+        User::where('id', auth()->id())->update([
+            'image' => $url
+        ]);
+        return back();
     }
 }

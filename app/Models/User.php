@@ -29,7 +29,8 @@ class User extends Authenticatable
         'account_name',
         'account_number',
         'bank',
-        'ref_id'
+        'ref_id',
+        'image'
     ];
 
     /**
@@ -85,5 +86,10 @@ class User extends Authenticatable
     public function user_courses()
     {
         return $this->hasMany(UserCourse::class);
+    }
+
+    public function earnings()
+    {
+        return $this->hasMany(Earning::class);
     }
 }

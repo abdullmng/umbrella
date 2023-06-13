@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('bank')->nullable();
             $table->enum('role', ['regular_user', 'vendor', 'user-admin'])->default('regular_user');
             $table->unsignedBigInteger('ref_id')->nullable();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

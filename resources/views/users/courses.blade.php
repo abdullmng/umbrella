@@ -1,14 +1,8 @@
 @extends('layouts.users')
 @section('title', 'Courses')
+@section('page-desc', 'Expand your knowledge with our wide range of courses.')
 @section('content')
 <div class="w-lg-50 text-center mx-lg-auto">
-    <!-- Heading -->
-    <div class="mb-5">
-      <h1 class="display-4">Courses</h1>
-      <p>Expand your knowledge with our wide range of courses.</p>
-    </div>
-    <!-- End Heading -->
-
     <form method="GET">
       <div class="position-relative">
         <!-- Input Card -->

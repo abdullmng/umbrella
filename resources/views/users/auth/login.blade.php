@@ -15,7 +15,7 @@
   <!-- Form -->
   <div class="mb-4">
     <label class="form-label" for="signinSrEmail">Your Email/Username</label>
-    <input type="email" class="form-control form-control-lg" name="username" id="signinSrEmail" tabindex="1" placeholder="email@address.com/username" aria-label="email@address.com" required>
+    <input type="text" class="form-control form-control-lg" name="username" id="signinSrEmail" tabindex="1" placeholder="Email/Username">
     @if ($errors->has('username'))
         <span class="text-danger text-small text-sm">{{ $errors->first('username') }}</span>
     @endif
