@@ -71,6 +71,20 @@ class ConfigsTableSeeder extends Seeder
                 'field_type' => 'input:email'
             ],
             [
+                'name' => 'min_withdrawal_amount_activity',
+                'value' => 5000,
+                'model' => null,
+                'seeds' => null,
+                'field_type' => 'input:number'
+            ], 
+            [
+                'name' => 'min_withdrawal_amount_referral',
+                'value' => 500,
+                'model' => null,
+                'seeds' => null,
+                'field_type' => 'input:number'
+            ],
+            [
                 'name' => 'registration_course',
                 'value' => 1,
                 'model' => 'App\Models\Course',

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->float('amount');
             $table->enum('status', ['pending', 'approved', 'declined'])->default('pending');
+            $table->enum('type', ['activity', 'sales']);
             $table->timestamps();
         });
     }

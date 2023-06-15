@@ -17,4 +17,9 @@ class Earning extends Model
         'type',
         'day'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

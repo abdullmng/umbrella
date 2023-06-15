@@ -67,7 +67,7 @@ class User extends Authenticatable
     {
         return Attribute::make(get: function ($val, $att) {
             $ref_earns = Earning::where('user_id', $att['id'])->where('type', 'referral_commission')->sum('amount');
-            $ref_withs = ReferralWithdrawal::where('user_id', $att['id'])->where('status', 'approved')->sum('amount');
+            $ref_withs = Withdrawal::where('user_id', $att['id'])->where('type', 'sales')->where('status', 'approved')->sum('amount');
 
             return $ref_earns - $ref_withs;
         });
@@ -77,7 +77,7 @@ class User extends Authenticatable
     {
         return Attribute::make(get: function ($val, $att) {
             $act_earns = Earning::where('user_id', $att['id'])->where('type', '!=', 'referral_commission')->sum('amount');
-            $act_withs = Withdrawal::where('user_id', $att['id'])->where('status', 'approved')->sum('amount');
+            $act_withs = Withdrawal::where('user_id', $att['id'])->where('type', 'activity')->where('status', 'approved')->sum('amount');
 
             return $act_earns - $act_withs;
         });
@@ -91,5 +91,18 @@ class User extends Authenticatable
     public function earnings()
     {
         return $this->hasMany(Earning::class);
+    }
+
+    public function approvedSocials(): Attribute
+    {
+        return Attribute::make(get: function ($val, $att) {
+            $socials = UserSocial::where('user_id', $att['id'])->where('status', 'approved')->get();
+            $approved = [];
+            foreach ($socials as $social)
+            {
+                $approved[] = $social->social_media;
+            }
+            return $approved;
+        });
     }
 }

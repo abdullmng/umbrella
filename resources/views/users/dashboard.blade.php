@@ -62,6 +62,7 @@
                 </table>
             </div>
             <div class="mb-4 text-center">
+              <a href="/users/withdrawals" class="btn btn-outline-danger btn-sm">Withdrawals</a>
               <a href="/users/activity" class="btn btn-outline-success btn-sm">Activity History</a>
             </div>
         </div>

@@ -56,15 +56,20 @@
               <a class="nav-link {{ request()->routeIs('home.get_coupons') ? 'active': '' }}" href="/coupons">Get Coupon</a>
             </li>
             <li class="hs-has-mega-menu nav-item">
-              <a class="nav-link" href="/tasks">Tasks</a>
+              <a class="nav-link {{ request()->routeIs('home.tasks') ? 'active': '' }}" href="/tasks">Tasks</a>
             </li>
             <li class="hs-has-mega-menu nav-item">
-              <a class="nav-link" href="/top-sellers">Top Sellers</a>
+              <a class="nav-link {{ request()->routeIs('home.top_sellers') ? 'active': '' }}" href="/top-sellers">Top Sellers</a>
             </li>
             @if (auth()->check())
-            <li class="hs-has-mega-menu nav-item">
-              <a class="nav-link {{ request()->routeIs('user.dashboard') ? 'active': '' }}" href="/users/dashboard">My Account</a>
-            </li>
+              <li class="hs-has-mega-menu nav-item">
+                <a class="nav-link {{ request()->routeIs('user.dashboard') ? 'active': '' }}" href="/users/dashboard">My Account</a>
+              </li>
+              @if (auth()->user()->role == 'vendor')
+                <li class="hs-has-mega-menu nav-item">
+                  <a class="nav-link {{ request()->routeIs('vendor.dashboard') ? 'active': '' }}" href="/users/vendor/dashboard">Vendor Dashboard</a>
+                </li>
+              @endif
             @endif
             <!-- End Landings -->
             <!-- End Blog -->

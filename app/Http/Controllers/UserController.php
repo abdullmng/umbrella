@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Earning;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -176,7 +177,7 @@ class UserController extends Controller
 
     public function coupons()
     {
-        $vendors = User::where('role', 'vendor')->get();
+        $vendors = User::where('role', 'vendor')->inRandomOrder()->get();
         return view('users.coupons', ['vendors' => $vendors]);
     }
 
@@ -205,5 +206,24 @@ class UserController extends Controller
             'image' => $url
         ]);
         return back();
+    }
+
+    public function withdrawals()
+    {
+        $user_id = auth()->id();
+        $withdrawals = Withdrawal::where('user_id', $user_id)->orderBy('id','DESC')->get();
+        return view('users.withdrawals', ['withdrawals' => $withdrawals]);
+    }
+
+    public function vendorDashboard()
+    {
+        $user_id = auth()->id();
+        $stats = [
+            'total_coupons' => Coupon::where('vendor_id', $user_id)->count(),
+            'total_used' => Coupon::where('vendor_id', $user_id)->where('status', 'used')->count(),
+            'total_unused' => Coupon::where('vendor_id', $user_id)->where('status', 'unused')->count()
+        ];
+        $coupons = Coupon::where('vendor_id', $user_id)->orderBy('user_id', 'ASC')->paginate();
+        return view('users.vendor_dash', ['coupons' => $coupons, 'stats' => $stats]);
     }
 }

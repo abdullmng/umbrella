@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vendor_id');
             $table->string('code');
             $table->float('amount');
             $table->enum('status', ['unused', 'used']);

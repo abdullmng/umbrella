@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <div class="text-center">
                             <img class="avatar avatar-xxl avatar-circle mb-3" src="{{ $vendor->image ?? '/assets/img/160x160/img10.jpg' }}" alt="Image Description">
-                            <h5>{{ $vendor->name }}</h5>
+                            <h5>{{ $vendor->username }}</h5>
                             <p class="lead">{{ !is_null($vendor->bank) ? explode('-', $vendor->bank)[1] : 'NA' }}</p>
                             <a href="https://wa.me/{{ $vendor->phone_number }}" class="btn btn-outline-primary w-100"><i class="bi bi-whatsapp"></i></a>
                         </div>

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EarningController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSocialController;
+use App\Http\Controllers\WithdrawalController;
 use App\Models\Config;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +31,9 @@ Route::get('/config', function () {
 Route::get('/coupons', [UserController::class, 'coupons'])->name('home.get_coupons');
 Route::get('courses', [CourseController::class, 'courses'])->name('home.courses');
 Route::get('/courses/{course_id}', [CourseController::class, 'course'])->name('home.course');
+Route::get('/tasks', [TaskController::class, 'tasks'])->name('home.tasks');
+Route::get('/tasks/{task_id}', [TaskController::class, 'task'])->name('home.task');
+Route::get('/top-sellers', [EarningController::class, 'topEarners'])->name('home.top_sellers');
 
 
 Route::prefix('users')->group(function () {
@@ -52,12 +58,23 @@ Route::prefix('users')->group(function () {
         Route::get('/bank', [UserController::class, 'bank'])->name('user.bank');
         Route::get('/socials', [UserController::class, 'socials'])->name('user.socials');
         Route::get('/activity', [UserController::class, 'activities'])->name('user.activities');
+        Route::get('/withdrawals', [UserController::class, 'withdrawals'])->name('user.withdrawals');
         Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 
-        //
+        //Post Routes
         Route::post('/bank', [UserController::class, 'updateBank'])->name('user.update_bank');
         Route::post('/socials', [UserSocialController::class, 'store'])->name('user.store_socials');
         Route::post('/dashboard', [UserController::class, 'upload'])->name('user.upload');
+        Route::post('/earn', [EarningController::class, 'earn'])->name('user.earn');
+        Route::post('/withdrawals', [WithdrawalController::class, 'withdraw'])->name('user.withdraw');
+
+        //vendor routes
+        Route::prefix('/vendor')->group(function () {
+            Route::group(['middleware' => 'vendor.validate'], function () {
+                Route::get('/dashboard', [UserController::class, 'vendorDashboard'])->name('vendor.dashboard');
+                Route::get('/coupons', [UserController::class, 'myCoupons'])->name('vendor.coupons');
+            });
+        });
     });
 
 });
