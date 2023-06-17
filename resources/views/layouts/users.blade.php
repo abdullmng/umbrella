@@ -30,7 +30,7 @@
       <nav class="js-mega-menu navbar-nav-wrap">
         <!-- Default Logo -->
         <a class="navbar-brand" href="/" aria-label="Unify">
-          <img class="navbar-brand-logo" src="/assets/svg/logos/logo.svg" alt="Image Description">
+          <img class="navbar-brand-logo" src="/assets/svg/logos/logo.png" alt="Image Description">
         </a>
         <!-- End Default Logo -->
 
@@ -67,7 +67,12 @@
               </li>
               @if (auth()->user()->role == 'vendor')
                 <li class="hs-has-mega-menu nav-item">
-                  <a class="nav-link {{ request()->routeIs('vendor.dashboard') ? 'active': '' }}" href="/users/vendor/dashboard">Vendor Dashboard</a>
+                  <a class="nav-link {{ request()->routeIs('vendor.dashboard') ? 'active': '' }}" href="/users/vendor/dashboard">Merchant Dashboard</a>
+                </li>
+              @endif
+              @if (auth()->user()->role == 'user-admin')
+                <li class="hs-has-mega-menu nav-item">
+                  <a class="nav-link {{ request()->routeIs('super.verify_socials') ? 'active': (request()->routeIs('super.verify_user_socials') ? 'active' : '' ) }}" href="/users/super/verify-socials">Verify Socials</a>
                 </li>
               @endif
             @endif

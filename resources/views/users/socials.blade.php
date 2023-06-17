@@ -22,10 +22,9 @@
                         }
                     @endphp
                     <div class="mb-4">
-                        <label for="{{ $social }}">{{ ucfirst($social) }} Link</label>
+                        <label for="{{ $social }}">{{ ucfirst($social) }} Link (<span class="text-{{ $color }} text-sm text-small">{{ $user_social?->status }}</span>)</label>
                         <input type="hidden" name="social_medias[]" value="{{ $social }}">
                         <input type="text" name="links[]" id="{{ $social }}" class="form-control" placeholder="Enter your {{ $social }} profile link"  value="{{ $user_social?->link }}">
-                        <span class="text-{{ $color }} text-sm text-small">{{ $user_social?->status }}</span>
                     </div>
                 @endforeach
                 <div class="mb-4">

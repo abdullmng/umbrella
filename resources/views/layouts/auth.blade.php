@@ -33,7 +33,7 @@
           <header id="header" class="navbar navbar-height navbar-light mb-3">
             <div class="container">
               <a class="navbar-brand mx-auto" href="/" aria-label="{{ config('app.name') }}">
-                <img class="navbar-brand-logo" src="/assets/svg/logos/logo-white.svg" alt="Image Description">
+                <img class="navbar-brand-logo" src="/assets/svg/logos/logo-white.png" alt="Image Description">
               </a>
             </div>
           </header>

@@ -24,11 +24,15 @@ class UserSocialController extends Controller
             {
                 continue;
             }
-            
+            if (UserSocial::where('user_id', $user_id)->where('social_media', $social_media)->where('status', 'approved')->exists())
+            {
+                continue;
+            }
             $socials = [
                 'user_id' => $user_id,
                 'social_media' => $social_media,
-                'link' => $link
+                'link' => $link,
+                'status' => 'pending'
             ];
 
             UserSocial::updateOrCreate(['user_id' => $user_id, 'social_media' => $social_media], $socials);

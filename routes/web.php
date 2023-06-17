@@ -72,7 +72,16 @@ Route::prefix('users')->group(function () {
         Route::prefix('/vendor')->group(function () {
             Route::group(['middleware' => 'vendor.validate'], function () {
                 Route::get('/dashboard', [UserController::class, 'vendorDashboard'])->name('vendor.dashboard');
-                Route::get('/coupons', [UserController::class, 'myCoupons'])->name('vendor.coupons');
+            });
+        });
+
+        //user admin routes
+        Route::prefix('super')->group(function () {
+            Route::group(['middleware' => 'user_admin.validate'], function () {
+                Route::get('/verify-socials', [Usercontroller::class, 'verifySocials'])->name('super.verify_socials');
+                Route::get('/verify-socials/{user_id}', [UserController::class, 'verifyUserSocials'])->name('super.verify_user_socials');
+                Route::get('/socials/approve/{user_social_id}', [UserController::class, 'approveSocialById'])->name('super.approve');
+                Route::get('/socials/decline/{user_social_id}', [UserController::class, 'declineSocialById'])->name('super.decline');
             });
         });
     });

@@ -1,5 +1,5 @@
 @extends('layouts.users')
-@section('title', 'Vendor Dashboard')
+@section('title', 'Merchant Dashboard')
 @section('content')
     <div class="row mb-4">
         <div class="col-md-4 mb-4">

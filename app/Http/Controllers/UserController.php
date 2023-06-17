@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Earning;
 use App\Models\User;
 use App\Models\UserCourse;
+use App\Models\UserSocial;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -225,5 +226,35 @@ class UserController extends Controller
         ];
         $coupons = Coupon::where('vendor_id', $user_id)->orderBy('user_id', 'ASC')->paginate();
         return view('users.vendor_dash', ['coupons' => $coupons, 'stats' => $stats]);
+    }
+
+    public function verifySocials()
+    {
+        $users = UserSocial::select('user_id')->distinct('user_id')->where('status', 'pending')->paginate(); 
+        return view('users.verify_socials', ['users' => $users]);
+    }
+
+    public function verifyUserSocials($user_id)
+    {
+        $user = User::find($user_id);
+        $user_socials = UserSocial::where('status', 'pending')->where('user_id', $user_id)->get();
+
+        return view('users.verify_user_socials', ['user' => $user, 'user_socials' => $user_socials]);
+    }
+
+    public function approveSocialById($user_social_id)
+    {
+        UserSocial::where('id', $user_social_id)->update([
+            'status' => 'approved'
+        ]);
+        return back()->with('success', 'Social Account approved');
+    }
+
+    public function declineSocialById($user_social_id)
+    {
+        UserSocial::where('id', $user_social_id)->update([
+            'status' => 'declined'
+        ]);
+        return back()->with('success', 'Social Account declined');
     }
 }

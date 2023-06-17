@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         App::singleton('socials', function () {
-            return ['facebook', 'twitter', 'tiktok', 'whatsapp', 'telegram', 'discord', 'linkedin', 'youtube'];
+            return ['facebook', 'twitter', 'tiktok', 'whatsapp', 'telegram', 'discord', 'instagram', 'youtube'];
         });
         view()->share('settings', $confs);
         Paginator::useBootstrapFive();
