@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->unsignedBigInteger('task_id')->nullable();
             $table->float('amount');
-            $table->enum('type', ['task_commission', 'referral_commission', 'other'])->default('daily_earning');
+            $table->enum('type', ['task_commission', 'referral_commission', 'other'])->default('task_commission');
             $table->date('day');
             $table->timestamps();
         });

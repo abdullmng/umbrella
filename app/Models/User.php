@@ -63,6 +63,11 @@ class User extends Authenticatable
         return Attribute::make(get: fn ($val, $att) => UserSocial::where('user_id', $att['id'])->where('status', 'approved')->exists());
     }
 
+    public function refCount(): Attribute
+    {
+        return Attribute::make(get: fn ($val, $att) => User::where('ref_id', $att['id'])->count());
+    }
+
     public function referralBal(): Attribute
     {
         return Attribute::make(get: function ($val, $att) {
@@ -104,5 +109,10 @@ class User extends Authenticatable
             }
             return $approved;
         });
+    }
+
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class, 'vendor_id', 'id');
     }
 }

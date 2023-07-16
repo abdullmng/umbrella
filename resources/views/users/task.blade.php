@@ -13,17 +13,17 @@
       <!-- End Col -->
     </div>
     <!-- End Row -->
-  
+
     <div class="row justify-content-lg-center mb-6">
       <div class="col-lg-12">
-        <img class="img-fluid" src="/assets/img/1920x1080/img1.jpg" alt="Image Description">
+        <img class="img-fluid" src="{{ $task->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
       </div>
       <!-- End Col -->
     </div>
     <!-- End Row -->
     <div class="row justify-content-lg-center mb-3">
       <div class="col-lg-12">
-        {{ $task->content }}
+        {!! $task->content !!}
       </div>
       <!-- End Col -->
     </div>
@@ -42,7 +42,7 @@
         @endif
         <div class="mb-4">
           <h3 class="mb-6">Share Task</h3>
-          @if (auth()->check()) 
+          @if (auth()->check())
             <a href="#" class="btn btn-info w-100 share mb-4" target="__blank">Share</a>
             <form action="/users/earn" method="post" class="earn-form" style="display: none">
                 @csrf

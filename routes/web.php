@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EarningController;
 use App\Http\Controllers\TaskController;
@@ -86,4 +89,29 @@ Route::prefix('users')->group(function () {
         });
     });
 
+});
+
+Route::prefix('admin')->group(function() {
+    Route::get('login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
+
+    Route::group(['middleware' => 'admin.auth'], function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/users', [AdminController::class, 'users'])->name("admin.users");
+        Route::get('/users/{user_id}', [AdminController::class,"user"])->name("admin.user");
+        Route::post('/users/{user_id}', [AdminController::class,"activateUser"])->name("admin.activate_user");
+        Route::post('/set-role/{user_id}', [AdminController::class, 'setRole'])->name('admin.set_role');
+        Route::post('/post-earning/{user_id}', [AdminController::class, 'postEarning'])->name('admin.post_earning');
+        Route::get('/coupons', [AdminController::class,"coupons"])->name('admin.coupons');
+        Route::post('/coupons', [CouponController::class,"generate"])->name('admin.create_coupons');
+        Route::get('/courses', [AdminController::class, 'courses'])->name('admin.courses');
+        Route::post('/courses', [CourseController::class, 'create'])->name('admin.create_course');
+        Route::get('/courses/delete/{course_id}', [CourseController::class, 'delete'])->name('admin.delete_course');
+        Route::get('/tasks', [AdminController::class, 'tasks'])->name('admin.tasks');
+        Route::post('/tasks', [TaskController::class, 'create'])->name('admin.create_tasks');
+        Route::get('/tasks/delete/{task_id}', [TaskController::class, 'delete'])->name('admin.delete_task');
+        Route::get('/config', [AdminController::class, 'config'])->name('admin.config');
+        Route::post('/config', [ConfigController::class, 'save'])->name('admin.save_config');
+        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    });
 });

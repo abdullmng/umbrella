@@ -44,7 +44,7 @@
                     <!-- Card -->
                     <a class="card card-ghost card-transition-zoom" href="/courses/{{ $course->id }}">
                     <div class="card-transition-zoom-item">
-                        <img class="card-img" src="/assets/img/1920x1080/img3.jpg" alt="Image Description">
+                        <img class="card-img" src="{{ $course->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
                     </div>
 
                     <div class="card-body">

@@ -12,12 +12,11 @@
                     <!-- Card -->
                     <a class="card card-ghost card-transition-zoom" href="/tasks/{{ $task->id }}">
                     <div class="card-transition-zoom-item">
-                        <img class="card-img" src="/assets/img/1920x1080/img3.jpg" alt="Image Description">
+                        <img class="card-img" src="{{ $task->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
                     </div>
 
                     <div class="card-body">
                         <h4>{{ $task->name }}</h4>
-                        <p class="card-text">{{ $task->short_description }}</p>
                     </div>
 
                     <div class="card-footer">

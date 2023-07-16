@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -21,5 +22,29 @@ class CourseController extends Controller
     {
         $course = Course::find($course_id);
         return view('users.course', ['course' => $course]);
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            "name"=> 'required',
+            "duration" => 'required',
+            'amount' => 'required',
+        ]);
+
+        $details = $request->except('_token', 'image');
+        $file = $request->file("image")->store('public/uploads');
+        $image = Storage::url($file);
+        $details['image'] = $image;
+
+        Course::create($details);
+
+        return back()->with("success","Course added successfully");
+    }
+
+    public function delete($course_id)
+    {
+        Course::where('id', $course_id)->delete();
+        return back()->with("success", "Course deleted");
     }
 }

@@ -13,17 +13,17 @@
       <!-- End Col -->
     </div>
     <!-- End Row -->
-  
+
     <div class="row justify-content-lg-center mb-6">
       <div class="col-lg-12">
-        <img class="img-fluid" src="/assets/img/1920x1080/img1.jpg" alt="Image Description">
+        <img class="img-fluid" src="{{ $course->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
       </div>
       <!-- End Col -->
     </div>
     <!-- End Row -->
     <div class="row justify-content-lg-center mb-3">
       <div class="col-lg-12">
-        {{ $course->description }}
+        {!! $course->description !!}
       </div>
       <!-- End Col -->
     </div>
@@ -34,9 +34,9 @@
       <div class="col-md-12">
         <div class="mb-4">
           <h3 class="mb-6">NGN {{ number_format($course->amount) }}</h3>
-          @if (auth()->check()) 
+          @if (auth()->check())
             @if (auth()->user()->user_courses->where('course_id', $course->id)->first())
-              <a href="#" class="btn btn-primary w-100">Join Course Channel</a>  
+              <a href="#" class="btn btn-primary w-100">Join Course Channel</a>
             @else
               <form action="" method="post">
                 @csrf

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('content');
             $table->float('amount');
-            $table->enum('social_media', ['facebook', 'twitter', 'tiktok', 'whatsapp', 'telegram', 'discord', 'linkedin', 'youtube'])->nullable();
+            $table->string('social_media')->nullable();
             $table->string('user_limit')->nullable();
             $table->string('image')->nullable();
             $table->date('day');

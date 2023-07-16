@@ -34,4 +34,9 @@ class Coupon extends Model
             return 'danger';
         });
     }
+
+    public function vendor(): Attribute
+    {
+        return Attribute::make(get: fn ($val, $att) => User::find($att['vendor_id']));
+    }
 }

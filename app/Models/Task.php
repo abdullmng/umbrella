@@ -14,6 +14,8 @@ class Task extends Model
         'content',
         'amount',
         'social_media',
-        'image'
+        'user_limit',
+        'image',
+        'day'
     ];
 }

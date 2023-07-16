@@ -45,4 +45,18 @@ class Config extends Model
             return [];
         });
     }
+
+    public function trueValue(): Attribute
+    {
+        return Attribute::make(get: function ($val, $att) {
+            if (!is_null($att['model']))
+            {
+                return $att["model"]::where("id", $att['value'])->first()?->name;
+            }
+            else
+            {
+                return $att["value"];
+            }
+        });
+    }
 }

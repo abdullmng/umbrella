@@ -19,7 +19,7 @@
               </div>
             </form>
         </div>
-          
+
         <div class="mb-4">
           <h3>{{ $user->name }}</h3>
           <span class="d-block mb-1">{{ '@'.$user->username }}</span>
@@ -32,7 +32,7 @@
             </div>
           </p>
         </div>
-        
+
         <a href="/users/bank" class="btn btn-outline-primary btn-sm">My Bank Info</a>
         <a href="/users/socials" class="btn btn-outline-info btn-sm">My Social Media profiles</a>
       </div>
@@ -74,12 +74,12 @@
         <div class="">
           <div class="mb-4">
               <h4 class="text-center">My Courses</h4>
-              
+
               @foreach ($user->user_courses as $course)
                 <!-- Card -->
                 <a class="card card-ghost card-transition-zoom" href="/courses/{{ $course->course->id }}">
                   <div class="card-transition-zoom-item">
-                    <img class="card-img" src="/assets/img/1920x1080/img3.jpg" alt="Image Description">
+                    <img class="card-img" src="{{ $course->course->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
                   </div>
 
                   <div class="card-body">
