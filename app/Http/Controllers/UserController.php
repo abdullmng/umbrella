@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\UserSocial;
 use App\Models\Withdrawal;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     protected $config;
-    
+
     public function __construct()
     {
         $this->config = app('settings');
@@ -65,7 +66,7 @@ class UserController extends Controller
 
             return back()->withErrors(['error' => 'Login failed: please check your credentials and try again.']);
         }
-        
+
         return back()->withErrors(['error' => 'Login is temporarily unavailable']);
     }
 
@@ -91,18 +92,18 @@ class UserController extends Controller
                 'password' => 'required|confirmed',
                 'coupon' => 'required'
             ]);
-    
+
             $config = app('settings');
             $ref = $this->getRef($request->ref);
             $user_info = $request->except('_token', 'ref', 'coupon');
             $code  = $request->coupon;
-            
+
             $coupon = $this->getCoupon($code);
             $course = Course::find($this->config['registration_course']);
 
             if (!is_null($coupon) && $coupon->status == 'unused')
             {
-                if ($course->amount == $coupon->amount) 
+                if ($course->amount == $coupon->amount)
                 {
                     $ref_id = null;
                     if ($ref)
@@ -119,7 +120,23 @@ class UserController extends Controller
                             'type' => 'referral_commission',
                             'day' => date('Y-m-d'),
                         ]);
-                    } 
+
+                        $upper_ref = $ref->ref_id;
+                        if (!is_null($upper_ref))
+                        {
+                            $sub_ref_com = $this->percentage($coupon->amount, $config['sub_referral_commission']);
+                            if ($config['referral_type'] == 'fixed')
+                            {
+                                $sub_ref_com = $config['sub_referral_commission'];
+                            }
+                            Earning::create([
+                                'user_id' => $upper_ref,
+                                'amount' => $sub_ref_com,
+                                'type' => 'referral_commission',
+                                'day' => date('Y-m-d'),
+                            ]);
+                        }
+                    }
                     $user_info['ref_id'] = $ref_id;
                     $user = User::create($user_info);
                     $coupon->update([
@@ -152,8 +169,16 @@ class UserController extends Controller
 
     public function bank()
     {
-        $banks = Http::withHeaders(['authorization' => 'Bearer '.config('app.flutterwave_secret')])->get('https://api.flutterwave.com/v3/banks/NG')->json();
-        return view('users.bank', ['banks' => $banks['data'], 'user' => auth()->user()]);
+        try
+        {
+            $banks = Http::withHeaders(['authorization' => 'Bearer '.config('app.flutterwave_secret')])->get('https://api.flutterwave.com/v3/banks/NG')->json();
+            return view('users.bank', ['banks' => $banks['data'], 'user' => auth()->user()]);
+        }
+        catch(ConnectionException $e)
+        {
+            //dd($e);
+            return redirect()->back()->withErrors(["error"=> "Network Error"]);
+        }
     }
 
     public function updateBank(Request $request)
@@ -230,7 +255,7 @@ class UserController extends Controller
 
     public function verifySocials()
     {
-        $users = UserSocial::select('user_id')->distinct('user_id')->where('status', 'pending')->paginate(); 
+        $users = UserSocial::select('user_id')->distinct('user_id')->where('status', 'pending')->paginate();
         return view('users.verify_socials', ['users' => $users]);
     }
 

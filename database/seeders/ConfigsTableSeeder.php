@@ -62,7 +62,7 @@ class ConfigsTableSeeder extends Seeder
                 'model' => null,
                 'seeds' => null,
                 'field_type' => 'input:number'
-            ], 
+            ],
             [
                 'name' => 'contact_email',
                 'value' => 'user@example.com',
@@ -76,7 +76,7 @@ class ConfigsTableSeeder extends Seeder
                 'model' => null,
                 'seeds' => null,
                 'field_type' => 'input:number'
-            ], 
+            ],
             [
                 'name' => 'min_withdrawal_amount_referral',
                 'value' => 500,
@@ -90,6 +90,13 @@ class ConfigsTableSeeder extends Seeder
                 'model' => 'App\Models\Course',
                 'seeds' => null,
                 'field_type' => 'select'
+            ],
+            [
+                'name' => 'sub_referral_commission',
+                'value' => 5,
+                'model' => null,
+                'seeds' => null,
+                'field_type' => 'input:number'
             ]
         ];
         Config::insert($configs);

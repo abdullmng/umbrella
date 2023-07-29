@@ -32,7 +32,7 @@ class EarningController extends Controller
 
         if ($task->user_limit && $total_earners >= $task->user_limit)
         {
-            return back()->withErrors(['error' => 'The earning threshhold for this task is exceeded']);   
+            return back()->withErrors(['error' => 'The earning threshhold for this task is exceeded']);
         }
 
         if ($task->social_media && !in_array($task->social_media, $user->approved_socials))
@@ -56,7 +56,7 @@ class EarningController extends Controller
         $earners = Earning::select('user_id', DB::raw('SUM(amount) as amt'))
         ->where('type', 'referral_commission')
         ->groupBy('user_id')
-        ->orderBy('amt')
+        ->orderBy('amt', 'DESC')
         ->limit(50)
         ->get();
         return view('users.top_earners', ['earners' => $earners]);
