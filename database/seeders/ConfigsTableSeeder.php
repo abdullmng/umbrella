@@ -97,7 +97,28 @@ class ConfigsTableSeeder extends Seeder
                 'model' => null,
                 'seeds' => null,
                 'field_type' => 'input:number'
-            ]
+            ],
+            [
+                'name' => 'allow_cashback',
+                'value' => 'true',
+                'model' => null,
+                'seeds' => 'true,false',
+                'field_type' => 'select'
+            ],
+            [
+                'name' => 'cashbback_amount',
+                'value' => '50',
+                'model' => null,
+                'seeds' => null,
+                'field_type' => 'input:number'
+            ],
+            [
+                'name' => 'cashback_type',
+                'value' => 'percentage',
+                'model' => null,
+                'seeds' => 'percentage,fixed',
+                'field_type' => 'select'
+            ],
         ];
         Config::insert($configs);
     }

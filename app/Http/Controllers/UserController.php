@@ -137,6 +137,14 @@ class UserController extends Controller
                             ]);
                         }
                     }
+                    if ($config['allow_cashback'] == 'true')
+                    {
+                        $cashback = $this->percentage($coupon->amount, $config['cashback_amount']);
+                        if ($config['cashback_type'] == "fixed")
+                        {
+                            $cashback = $config['cashback_amount'];
+                        }
+                    }
                     $user_info['ref_id'] = $ref_id;
                     $user = User::create($user_info);
                     $coupon->update([
@@ -149,6 +157,20 @@ class UserController extends Controller
                         'status' => 'active',
                         'date_activated' => date('Y-m-d'),
                     ]);
+                    if ($config['allow_cashback'] == 'true')
+                    {
+                        $cashback = $this->percentage($coupon->amount, $config['cashback_amount']);
+                        if ($config['cashback_type'] == "fixed")
+                        {
+                            $cashback = $config['cashback_amount'];
+                        }
+                        Earning::create([
+                            'user_id' => $user->id,
+                            'amount' => $cashback,
+                            "type" => 'task_commission',
+                            "day" => date("Y-m-d")
+                        ]);
+                    }
                     Auth::login($user);
                     return redirect()->intended(route('user.dashboard'));
                 }

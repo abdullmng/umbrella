@@ -115,4 +115,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Coupon::class, 'vendor_id', 'id');
     }
+
+    public function hasBank(): Attribute
+    {
+        return Attribute::make(get: fn ($val, $att) => $att['bank'] ? true: false);
+    }
 }
