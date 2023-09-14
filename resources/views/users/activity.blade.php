@@ -33,4 +33,9 @@
             </div>
         </div>
     </div>
+    <!-- Pagination -->
+    <nav class="d-flex justify-content-center" aria-label="Page navigation">
+        {{ $earnings->links() }}
+    </nav>
+    <!-- End Pagination -->
 @endsection

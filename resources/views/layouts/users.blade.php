@@ -44,7 +44,7 @@
           </span>
         </button>
         <!-- End Toggler -->
-      
+
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav nav-pills">
@@ -110,10 +110,12 @@
   <main id="content" role="main">
     <!-- User Profile -->
     <div class="container content-space-2">
-      <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
-        <h1 class="display-4">@yield('title')</h1>
-        <p class="lead">@yield('page-desc')</p>
-      </div>
+        @if (!request()->routeIs("home"))
+            <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
+                <h1 class="display-4">@yield('title')</h1>
+                <p class="lead">@yield('page-desc')</p>
+            </div>
+        @endif
       @yield('content')
       <!-- End Row -->
     </div>
@@ -122,7 +124,7 @@
   <!-- ========== END MAIN CONTENT ========== -->
 
   @yield('modals')
-  
+
   <!-- ========== FOOTER ========== -->
   <footer class="bg-dark">
     <div class="container">
@@ -131,7 +133,7 @@
           <h2 class="fw-medium text-white-70 mb-0">Join the thriving<br><span class="fw-bold text-white">Unify</span> business agency</h2>
         </div>
         <!-- End Col -->
-      
+
         <div class="col-md-auto">
           <div class="d-grid d-sm-flex gap-3">
             <a class="btn btn-primary" href="#">Request demo</a>
@@ -239,7 +241,7 @@
                   </div>
                 </div>
               </a></li>
-            
+
               <li><a class="link link-light link-light-75" href="#">
                 <div class="d-flex">
                   <div class="flex-shrink-0">
@@ -251,7 +253,7 @@
                   </div>
                 </div>
               </a></li>
-            
+
               <li><a class="link link-light link-light-75" href="#">
                 <div class="d-flex">
                   <div class="flex-shrink-0">
@@ -263,7 +265,7 @@
                   </div>
                 </div>
               </a></li>
-            
+
               <li><a class="link link-light link-light-75" href="#">
                 <div class="d-flex">
                   <div class="flex-shrink-0">

@@ -237,7 +237,7 @@ class UserController extends Controller
 
     public function activities()
     {
-        $earnings = auth()->user()->earnings;
+        $earnings = Earning::where('user_id', auth()->id())->paginate();
         return view('users.activity', ['earnings' => $earnings]);
     }
 

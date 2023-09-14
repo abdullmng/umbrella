@@ -4,13 +4,15 @@
 <div class="row justify-content-lg-between align-items-lg-center">
     <div class="col-lg-5 mb-5 mb-lg-0">
       <div class="mb-5">
-        <h1 class="display-4 text-dark mb-5">Start your journey with <span class="text-primary">Unify</span></h1>
-        <p class="fs-3">Feature-rich components and designed demo pages help you create the best possible products.</p>
+        <h1 class="display-4 text-dark mb-5">Start your journey with <span class="text-primary">{{ config('app.name') }}</span></h1>
+        <p class="fs-3">Build your skills with:
+            Our self paced courses and
+            Readily available resources</p>
       </div>
 
       <div class="d-grid d-sm-flex gap-3 mb-5">
-        <a class="btn btn-primary" href="#">Request demo</a>
-        <a class="btn btn-ghost-dark btn-pointer" href="#">Sign up free</a>
+        <a class="btn btn-primary" href="/users/register">Sign Up Now</a>
+        <a class="btn btn-ghost-dark btn-pointer" href="/courses">Learn with ease</a>
       </div>
     </div>
     <!-- End Col -->
@@ -18,7 +20,7 @@
     <div class="col-lg-6">
       <div class="position-relative">
         <div class="position-relative">
-          <img class="img-fluid" src="./assets/img/950x950/img1.jpg" alt="Image Description">
+          <img class="img-fluid" src="/homefeats.png" alt="Image Description">
 
           <div class="position-absolute bottom-0 end-0">
             <img class="w-100" src="./assets/svg/illustrations/cubics.svg" alt="SVG" style="max-width: 30rem;">
@@ -30,12 +32,12 @@
           <div class="d-flex align-items-center">
             <div class="flex-shrink-0">
               <span class="avatar avatar-sm avatar-circle">
-                <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                <img class="avatar-img" src="/img1.jpg" alt="Image Description">
               </span>
             </div>
             <div class="flex-grow-1 ms-2">
-              <div class="fs-5 fw-bold mb-0">Julia</div>
-              <span class="d-block fs-6">Fantastic theme!</span>
+              <div class="fs-5 fw-bold mb-0">John</div>
+              <span class="d-block fs-6">Fantastic Courses!</span>
             </div>
           </div>
         </div>
@@ -46,12 +48,12 @@
           <div class="d-flex align-items-center">
             <div class="flex-shrink-0">
               <span class="avatar avatar-sm avatar-circle">
-                <img class="avatar-img" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+                <img class="avatar-img" src="/img1.jpg" alt="Image Description">
               </span>
             </div>
             <div class="flex-grow-1 ms-2">
               <div class="fs-5 fw-bold text-dark mb-0">Michael</div>
-              <span class="d-block fs-6 text-dark">Excellent documentation 🔥👋</span>
+              <span class="d-block fs-6 text-dark">Excellent Tutors 🔥👋</span>
             </div>
           </div>
         </div>
@@ -71,11 +73,11 @@
       <!-- Icon Block -->
       <div class="text-center">
         <div class="mb-3">
-          <i class="bi-phone fs-1 text-dark"></i>
+          <i class="bi-people fs-1 text-dark"></i>
         </div>
-        
-        <h5>Responsive</h5>
-        <span class="d-block">Responsive, and mobile-first project on the web</span>
+
+        <h5>Community</h5>
+        <span class="d-block">A community to learn, improve and advance</span>
       </div>
       <!-- End Icon Block -->
     </div>
@@ -85,23 +87,23 @@
       <!-- Icon Block -->
       <div class="text-center">
         <div class="mb-3">
-          <i class="bi-toggles2 fs-1 text-dark"></i>
+          <i class="bi-gift fs-1 text-dark"></i>
         </div>
-        
-        <h5>Customizable</h5>
-        <span class="d-block">Components are easily customized</span>
+
+        <h5>Umbrella Innovations</h5>
+        <span class="d-block">Get rewarded for learning</span>
       </div>
       <!-- End Icon Block -->
     </div>
     <!-- End Col -->
 
-    <div class="col-sm-6 col-lg mb-5 mb-sm-0">
+   {{-- <div class="col-sm-6 col-lg mb-5 mb-sm-0">
       <!-- Icon Block -->
       <div class="text-center">
         <div class="mb-3">
           <i class="bi-file-earmark-text fs-1 text-dark"></i>
         </div>
-        
+
         <h5>Documentation</h5>
         <span class="d-block">Every component and plugin is well documented</span>
       </div>
@@ -115,12 +117,12 @@
         <div class="mb-3">
           <i class="bi-chat-right-dots fs-1 text-dark"></i>
         </div>
-        
+
         <h5>24/7 Support</h5>
         <span class="d-block">Contact us 24 hours a day, 7 days a week.</span>
       </div>
       <!-- End Icon Block -->
-    </div>
+    </div> --}}
     <!-- End Col -->
   </div>
   <!-- End Row -->
@@ -137,7 +139,7 @@
             <img class="img-fluid rounded-3" src="./assets/img/580x480/img1.jpg" alt="Image Description">
           </div>
           <!-- End Col -->
-          
+
           <div class="col-3">
             <img class="img-fluid rounded-3" src="./assets/img/350x700/img1.jpg" alt="Image Description">
           </div>
@@ -154,15 +156,15 @@
 
       <div class="col-lg-5">
         <div class="mb-5">
-          <h2>Collaborative tools to design user experience</h2>
-          <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p>
+          <h2>Enhanced tools designed for marketing and sales</h2>
+          {{-- <p>Use our tools to explore your ideas and make your vision come true. Then share your work easily.</p> --}}
         </div>
 
         <!-- List Checked -->
         <ul class="list-checked list-checked-soft-bg-primary list-checked-lg">
           <li class="list-checked-item"><span class="fw-bold">Less routine</span> – more creativity</li>
-          <li class="list-checked-item">Hundreds of thousands saved</li>
-          <li class="list-checked-item">Scale budgets <span class="fw-bold">efficiently</span></li>
+          <li class="list-checked-item">Thousands of active users</li>
+          <li class="list-checked-item">User friendly <span class="fw-bold">Budget</span></li>
         </ul>
         <!-- End List Checked -->
       </div>
@@ -181,7 +183,7 @@
         <div class="mb-3">
           <i class="bi-tablet-landscape fs-1 text-dark"></i>
         </div>
-        <p>Unify is an <span class="fw-bold">incredibly beautiful</span> and mobile-first project on the web.</p>
+        <p>Umbrella Innovations is an <span class="fw-bold">incredibly beautiful</span> and mobile-first project on the web.</p>
       </div>
     </div>
     <!-- End Col -->
@@ -191,7 +193,7 @@
         <div class="mb-3">
           <i class="bi-shield-check fs-1 text-dark"></i>
         </div>
-        <p>Unify is not only for developers but also for designers, and <span class="fw-bold">includes a Figma</span> file.</p>
+        <p>Umbrella Innovations is designed for learning, sales and marketing</p>
       </div>
     </div>
     <!-- End Col -->
@@ -201,7 +203,7 @@
         <div class="mb-3">
           <i class="bi-hdd-network fs-1 text-dark"></i>
         </div>
-        <p><span class="fw-bold">Whether you're a startup</span> or a global enterprise, learn how to integrate with Unify.</p>
+        <p>Whether you're a starter or a Pro, learn how to integrate with Umbrella.</p>
       </div>
     </div>
     <!-- End Col -->
@@ -211,7 +213,7 @@
         <div class="mb-3">
           <i class="bi-gear fs-1 text-dark"></i>
         </div>
-        <p>Use Unify thoroughly thought and automated libraries to <span class="fw-bold">manage your businesses</span>.</p>
+        <p>Use Umbrella to promote your business or skills, we help you dominate the Media.</p>
       </div>
     </div>
     <!-- End Col -->
@@ -221,7 +223,7 @@
         <div class="mb-3">
           <i class="bi-sliders fs-1 text-dark"></i>
         </div>
-        <p>Unify template can be <span class="fw-bold">easily customized</span> with its cutting-edge components.</p>
+        <p>You can use umbrella to promote your contents on social media at user friendly budget.</p>
       </div>
     </div>
     <!-- End Col -->
@@ -231,7 +233,7 @@
         <div class="mb-3">
           <i class="bi-journal-text fs-1 text-dark"></i>
         </div>
-        <p>Every component and plugin is <span class="fw-bold">well documented</span> with live examples.</p>
+        <p>Interact and relate with other intellects on Umbrella Blog.</p>
       </div>
     </div>
     <!-- End Col -->
@@ -250,19 +252,19 @@
 
     <div class="col-lg-5">
       <div class="mb-5">
-        <h2>We tackle the challenges start-ups face</h2>
-        <p>Besides working with start-up enterprises as a partner for digitalization, we have built enterprise products for common pain points that we have encountered in various products and projects.</p>
+        <h2>Why choose to startup with Umbrella?</h2>
+        <p>Umbrella Innovation is created to help you broaden your knowledge by learning digital skills, soft skills and vocational skills, these skills  will help you earn an income.</p>
       </div>
 
       <!-- List Checked -->
       <ul class="list-checked list-checked-soft-bg-primary list-checked-lg mb-5">
-        <li class="list-checked-item"><span class="fw-bold">Easy &amp; fast</span> designing</li>
-        <li class="list-checked-item">Powerful <span class="fw-bold">features</span></li>
-        <li class="list-checked-item">User Experience Design</li>
+        <li class="list-checked-item">Get rewarded for learning, and withdraw your earnings as cash.</li>
+        <li class="list-checked-item">Incentives for members under the Umbrella</li>
+        <li class="list-checked-item">Financial Freedom and Independence</li>
       </ul>
       <!-- End List Checked -->
 
-      <a class="btn btn-primary" href="#">Our services</a>
+      <a class="btn btn-primary" href="/about">Our services</a>
     </div>
     <!-- End Col -->
   </div>
@@ -281,16 +283,16 @@
 
       <!-- Blockquote -->
       <figure>
-        <blockquote class="blockquote"><em>Amazing people to work with. Very fast and professional partner.</em></blockquote>
+        <blockquote class="blockquote"><em>The beautiful thing about learning is that no one can take it away from you.</em></blockquote>
 
         <figcaption class="blockquote-footer">
           <div class="d-flex align-items-center">
             <div class="flex-shrink-0">
-              <img class="avatar avatar-circle" src="./assets/img/160x160/img3.jpg" alt="Image Description">
+              <img class="avatar avatar-circle" src="/img1.jpg" alt="Image Description">
             </div>
 
             <div class="flex-grow-1 ms-3">
-              Josh Grazioso
+              -BB King
               <span class="blockquote-footer-source">Director Payments &amp; Risk | Airbnb</span>
             </div>
           </div>
