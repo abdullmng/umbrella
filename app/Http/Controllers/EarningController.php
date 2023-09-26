@@ -58,7 +58,7 @@ class EarningController extends Controller
         ->groupBy('user_id')
         ->orderBy('amt', 'DESC')
         ->limit(50)
-        ->get();
+        ->paginate(6);
         return view('users.top_earners', ['earners' => $earners]);
     }
 }

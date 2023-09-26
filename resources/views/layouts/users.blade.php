@@ -368,6 +368,7 @@
 
   <!-- JS Plugins Init. -->
   <script>
+    $('img').addClass('img-fluid');
     (function() {
       // INITIALIZATION OF NAVBAR
       // =======================================================
