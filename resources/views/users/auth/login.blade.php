@@ -29,9 +29,6 @@
 
     <div class="input-group-merge">
       <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupSrPassword" placeholder="Enter your password">
-      <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
-        <i id="changePassIcon" class="bi-eye"></i>
-      </a>
         @if ($errors->has('password'))
             <span class="text-danger text-small text-sm">{{ $errors->first('password') }}</span>
         @endif

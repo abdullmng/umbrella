@@ -372,72 +372,33 @@
 <div class="container content-space-2 content-space-lg-3">
   <!-- Heading -->
   <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
-    <h2>Less overhead, more collaboration</h2>
-    <p>Start with award-winning templates, then customize to fit your style and professional needs.</p>
+    <h2>Latest Courses</h2>
+    <p>Explore our latest addition to the course pool.</p>
   </div>
   <!-- End Heading -->
 
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    @foreach ($courses as $course)
     <div class="col mb-5 mb-md-0">
       <!-- Card -->
-      <a class="card card-ghost card-transition-zoom h-100" href="./blog-article.html">
+      <a class="card card-ghost card-transition-zoom h-100" href="/courses/{{ $course->id }}">
         <div class="card-transition-zoom-item">
-          <img class="card-img" src="./assets/img/580x480/img1.jpg" alt="Image Description">
+          <img class="card-img" src="{{ $course->image ?? '/assets/img/1920x1080/img3.jpg' }}" alt="Image Description">
         </div>
 
         <div class="card-body">
-          <h4>Virtual Venue</h4>
-          <p class="card-text">Create an immersive attendee experience with interactive programming for both digital and onsite audiences</p>
+          <h4>{{ $course->name }}</h4>
+          <p class="card-text">{{ $course->short_description }}</p>
         </div>
 
         <div class="card-footer">
-          <span class="card-link">Explore Virtual Venue</span>
+          <span class="card-link">View details</span>
         </div>
       </a>
       <!-- End Card -->
     </div>
     <!-- End Col -->
-
-    <div class="col mb-5 mb-md-0">
-      <!-- Card -->
-      <a class="card card-ghost card-transition-zoom h-100" href="./blog-article.html">
-        <div class="card-pinned card-transition-zoom-item">
-          <img class="card-img" src="./assets/img/580x480/img2.jpg" alt="Image Description">
-          <span class="badge bg-dark text-white card-pinned-top-end">Sponsored</span>
-        </div>
-
-        <div class="card-body">
-          <h4>Studio by Htmlstream</h4>
-          <p class="card-text">Produce professional, reliable streams easily leveraging Htmlstream's innovative broadcast studio</p>
-        </div>
-
-        <div class="card-footer">
-          <span class="card-link">Explore Studio</span>
-        </div>
-      </a>
-      <!-- End Card -->
-    </div>
-    <!-- End Col -->
-
-    <div class="col">
-      <!-- Card -->
-      <a class="card card-ghost card-transition-zoom h-100" href="./blog-article.html">
-        <div class="card-transition-zoom-item">
-          <img class="card-img" src="./assets/img/580x480/img3.jpg" alt="Image Description">
-        </div>
-
-        <div class="card-body">
-          <h4>Onsite</h4>
-          <p class="card-text">Optimize your in-person experience with best-in-class capabilities like badge printing and lead retrieval</p>
-        </div>
-
-        <div class="card-footer">
-          <span class="card-link">Explore Onsite</span>
-        </div>
-      </a>
-      <!-- End Card -->
-    </div>
-    <!-- End Col -->
+    @endforeach
   </div>
   <!-- End Row -->
 </div>

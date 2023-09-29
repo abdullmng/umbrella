@@ -64,9 +64,6 @@
         <div class="mb-4">
           <div class="input-group-merge">
             <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupSrPassword" placeholder="Enter password" >
-            <a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
-              <i class="js-toggle-password-show-icon-1 bi-eye"></i>
-            </a>
 
             @if ($errors->has('password'))
                 <span class="text-danger text-small text-sm">{{ $errors->first('password') }}</span>
@@ -80,9 +77,6 @@
         <div class="mb-4">
           <div class="input-group-merge">
             <input type="password" class="js-toggle-password form-control form-control-lg" name="password_confirmation" id="signupSrConfirmPassword" placeholder="Confirm password">
-            <a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
-              <i class="js-toggle-password-show-icon-2 bi-eye"></i>
-            </a>
             @if ($errors->has('password_confirmation'))
                 <span class="text-danger text-small text-sm">{{ $errors->first('password_confirmation') }}</span>
             @endif

@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSocialController;
 use App\Http\Controllers\WithdrawalController;
 use App\Models\Config;
+use App\Models\Course;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $courses = Course::latest()->limit(3)->get();
+    return view('home', ['courses' => $courses]);
 })->name("home");
 
 Route::get('/config', function () {
@@ -65,11 +67,15 @@ Route::prefix('users')->group(function () {
 
     // Get Routes
     Route::get('/login', [UserController::class, 'login'])->name('user.login');
+    Route::get('/forgot', [UserController::class,'forgot'])->name('user.forgot');
+    Route::get('/reset', [UserController::class,'reset'])->name('password.reset');
     Route::get('/register', [UserController::class, 'register'])->name('user.register');
 
     // Post requests
     Route::post('/login', [UserController::class, 'authenticate'])->name('user.auth');
     Route::post('/register', [UserController::class, 'store'])->name('user.store');
+    Route::post('/forgot', [UserController::class,'requestToken'])->name('user.request_token');
+    Route::post('/reset', [UserController::class,'resetPassword'])->name('user.reset_password');
 
     /*
         ** Protected Routes
