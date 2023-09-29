@@ -130,7 +130,7 @@
     <div class="container">
       <div class="row align-items-center pt-8 pb-4">
         <div class="col-md mb-5 mb-md-0">
-          <h2 class="fw-medium text-white-70 mb-0">Join the thriving<br><span class="fw-bold text-white">{{ config('app.name') }}</span> Academy</h2>
+          <h2 class="fw-medium text-white-70 mb-0">Join the thriving<br><span class="fw-bold text-white">{{ config('app.name') }}</span> Business</h2>
         </div>
         <!-- End Col -->
 
@@ -147,81 +147,116 @@
       <div class="border-bottom border-white-10">
         <div class="row py-6">
 
+            <div class="col-6 col-sm-4 col-lg">
+                <span class="text-cap text-white">Features under the umbrella</span>
+
+                <!-- List -->
+                <ul class="list-unstyled list-py-2 mb-0">
+
+                    <li><a class="link link-light link-light-75" href="#">
+                        <div class="flex-grow-1 ms-2">
+                        <span>Blog</span>
+                        </div>
+                    </a></li>
+                    <li><a class="link link-light link-light-75" href="#">
+                        <div class="flex-grow-1 ms-2">
+                        <span>Play 2 Earn (P2E)</span>
+                        </div>
+                    </a></li>
+                    <li><a class="link link-light link-light-75" href="#">
+                        <div class="flex-grow-1 ms-2">
+                        <span>Tasks 2 Earn (T2E)</span>
+                        </div>
+                    </a></li>
+                    <li><a class="link link-light link-light-75" href="#">
+                        <div class="flex-grow-1 ms-2">
+                        <span>Market Place</span>
+                        </div>
+                    </a></li>
+                </ul>
+                <!-- End List -->
+              </div>
+              <!-- End Col -->
+
           <div class="col-6 col-sm-4 col-lg">
             <span class="text-cap text-white">Follow us</span>
 
             <!-- List -->
             <ul class="list-unstyled list-py-2 mb-0">
-              <li><a class="link link-light link-light-75" href="https://youtube.com/@Umbrella-ng">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-youtube"></i>
-                  </div>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>Youtube</span>
-                  </div>
-                </div>
-              </a></li>
+                <li><a class="link link-light link-light-75" href="https://twitter.com/ng_umbrella">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-twitter"></i>
+                      </div>
 
-              <li><a class="link link-light link-light-75" href="https://www.facebook.com/connectumbrella">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-facebook"></i>
-                  </div>
+                      <div class="flex-grow-1 ms-2">
+                        <span>Twitter/ X</span>
+                      </div>
+                    </div>
+                </a></li>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>Facebook</span>
-                  </div>
-                </div>
-              </a></li>
 
-              <li><a class="link link-light link-light-75" href="https://wa.me/+2347025925703">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-whatsapp"></i>
-                  </div>
+                <li><a class="link link-light link-light-75" href="https://instagram.com/umbrella.ng">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-instagram"></i>
+                      </div>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>WhatsApp</span>
-                  </div>
-                </div>
-              </a></li>
+                      <div class="flex-grow-1 ms-2">
+                        <span>Instagram</span>
+                      </div>
+                    </div>
+                </a></li>
 
-              <li><a class="link link-light link-light-75" href="https://twitter.com/ng_umbrella">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-twitter"></i>
-                  </div>
+                <li><a class="link link-light link-light-75" href="https://t.me/umbrellang1">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-telegram"></i>
+                      </div>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>Twitter</span>
-                  </div>
-                </div>
-              </a></li>
+                      <div class="flex-grow-1 ms-2">
+                        <span>Telegram</span>
+                      </div>
+                    </div>
+                </a></li>
 
-              <li><a class="link link-light link-light-75" href="https://instagram.com/umbrella.ng">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-instagram"></i>
-                  </div>
+                <li><a class="link link-light link-light-75" href="https://www.facebook.com/connectumbrella">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-facebook"></i>
+                      </div>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>Instagram</span>
-                  </div>
-                </div>
-              </a></li>
-              <li><a class="link link-light link-light-75" href="https://www.tiktok.com/@umbrella.ng">
-                <div class="d-flex">
-                  <div class="flex-shrink-0">
-                    <i class="bi-tiktok"></i>
-                  </div>
+                      <div class="flex-grow-1 ms-2">
+                        <span>Facebook</span>
+                      </div>
+                    </div>
+                </a></li>
 
-                  <div class="flex-grow-1 ms-2">
-                    <span>Tik-Tok</span>
-                  </div>
-                </div>
-              </a></li>
+                <li><a class="link link-light link-light-75" href="https://wa.me/+2347025925703">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-whatsapp"></i>
+                      </div>
+
+                      <div class="flex-grow-1 ms-2">
+                        <span>WhatsApp</span>
+                      </div>
+                    </div>
+                </a></li>
+
+
+                <li><a class="link link-light link-light-75" href="https://www.tiktok.com/@umbrella.ng">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0">
+                        <i class="bi-tiktok"></i>
+                      </div>
+
+                      <div class="flex-grow-1 ms-2">
+                        <span>Tik-Tok</span>
+                      </div>
+                    </div>
+                </a></li>
             </ul>
             <!-- End List -->
           </div>

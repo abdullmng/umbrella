@@ -9,9 +9,9 @@
                 @foreach ($earnings->where('type', 'task_commission') as $task_earn)
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h4>{{ $task_earn->amount }}</h4>
-                                <p class="text-sm text-small">{{ $task_earn->day }}</p>
+                            <div class="card-body p-2">
+                                <h4 class="mb-0">{{ $task_earn->amount }}</h4>
+                                <p class="text-sm text-small mb-0">{{ $task_earn->day }}</p>
                             </div>
                         </div>
                     </div>
@@ -23,9 +23,9 @@
                 @foreach ($earnings->where('type', 'referral_commission') as $task_earn)
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h4>NGN {{ $task_earn->amount }}</h4>
-                                <p class="text-sm text-small">On {{ $task_earn->day }}</p>
+                            <div class="card-body p-2">
+                                <h4 class="mb-0">{{ $task_earn->amount }}</h4>
+                                <p class="text-sm text-small mb-0">{{ $task_earn->day }}</p>
                             </div>
                         </div>
                     </div>
