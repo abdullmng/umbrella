@@ -148,14 +148,14 @@
         <div class="row py-6">
 
             <div class="col-6 col-sm-4 col-lg">
-                <span class="text-cap text-white">Features under the umbrella</span>
+                <span class="text-cap text-white">Umbrella Features</span>
 
                 <!-- List -->
                 <ul class="list-unstyled list-py-2 mb-0">
 
                     <li><a class="link link-light link-light-75" href="#">
                         <div class="flex-grow-1 ms-2">
-                        <span>Blog</span>
+                        <span>Umbrella Hub</span>
                         </div>
                     </a></li>
                     <li><a class="link link-light link-light-75" href="#">
