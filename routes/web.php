@@ -5,6 +5,8 @@ use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EarningController;
+use App\Http\Controllers\HubController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSocialController;
@@ -60,6 +62,14 @@ Route::get('/tasks/{task_id}', [TaskController::class, 'task'])->name('home.task
 Route::get('/top-sellers', [EarningController::class, 'topEarners'])->name('home.top_sellers');
 
 
+//Hub
+Route::group(['prefix' => 'hub'], function () {
+    Route::get('/', [HubController::class,'index'])->name('user.hub_home');
+    Route::get('/topic/{id}', [HubController::class,'topic'])->name('users.hub_topic');
+    Route::get('/post/{id}', [PostController::class,'show'])->name('user.hub_post');
+    Route::post('/post/{id}', [HubController::class,'postComment'])->name('user.hub_comment');
+});
+
 Route::prefix('users')->group(function () {
     /*
         ** Open Routes
@@ -82,11 +92,14 @@ Route::prefix('users')->group(function () {
     */
     Route::group(['middleware' => 'auth'], function () {
         // Get routes
+        Route::get('/invoices/{invoice_id}', [UserController::class, 'showInvoice'])->name('user.show_invocie');
+        Route::get('/invoices', [UserController::class,'invoices'])->name('user.invoices');
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/bank', [UserController::class, 'bank'])->name('user.bank');
         Route::get('/socials', [UserController::class, 'socials'])->name('user.socials');
         Route::get('/activity', [UserController::class, 'activities'])->name('user.activities');
         Route::get('/withdrawals', [UserController::class, 'withdrawals'])->name('user.withdrawals');
+        Route::get('/generate-invoice/{course_id}', [UserController::class, 'generateInvoice'])->name('user.generate_invoice');
         Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 
         //Post Routes

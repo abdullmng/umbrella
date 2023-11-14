@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coupon;
 use App\Models\Course;
 use App\Models\Earning;
+use App\Models\Invoice;
 use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\UserSocial;
@@ -92,27 +93,26 @@ class UserController extends Controller
                 'username' => 'required|alpha_num|unique:users',
                 'phone_number' => 'required|unique:users',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|confirmed',
-                'coupon' => 'required'
+                'password' => 'required|confirmed'
             ]);
 
             $config = app('settings');
             $ref = $this->getRef($request->ref);
             $user_info = $request->except('_token', 'ref', 'coupon');
-            $code  = $request->coupon;
+            /*$code  = $request->coupon;
 
-            $coupon = $this->getCoupon($code);
+            $coupon = $this->getCoupon($code);*/
             $course = Course::find($this->config['registration_course']);
 
-            if (!is_null($coupon) && $coupon->status == 'unused')
-            {
-                if ($course->amount == $coupon->amount)
-                {
+            //if (!is_null($coupon) && $coupon->status == 'unused')
+            //{
+                //if ($course->amount == $coupon->amount)
+                //{
                     $ref_id = null;
                     if ($ref)
                     {
                         $ref_id = $ref->id;
-                        $ref_com = $this->percentage($coupon->amount, $config['referral_commission']);
+                        /*$ref_com = $this->percentage($coupon->amount, $config['referral_commission']);
                         if ($config['referral_type'] == 'fixed')
                         {
                             $ref_com = $config['referral_commission'];
@@ -138,29 +138,37 @@ class UserController extends Controller
                                 'type' => 'referral_commission',
                                 'day' => date('Y-m-d'),
                             ]);
-                        }
+                        }*/
                     }
-                    if ($config['allow_cashback'] == 'true')
+                    /*if ($config['allow_cashback'] == 'true')
                     {
                         $cashback = $this->percentage($coupon->amount, $config['cashback_amount']);
                         if ($config['cashback_type'] == "fixed")
                         {
                             $cashback = $config['cashback_amount'];
                         }
-                    }
+                    }*/
                     $user_info['ref_id'] = $ref_id;
                     $user = User::create($user_info);
-                    $coupon->update([
+                    $invoice = Invoice::create([
+                        'user_id' => $user->id,
+                        'course_id' => $course->id,
+                        'invoice_number' => date('hmyids'),
+                        'description' => 'Course Activation',
+                        'amount' => $course->amount,
+                        "status" => 'unpaid'
+                    ]);
+                    /*$coupon->update([
                         'status' => 'used',
                         'user_id' => $user->id
-                    ]);
-                    UserCourse::create([
+                    ]);*/
+                    /*UserCourse::create([
                         'user_id' => $user->id,
                         'course_id' => $course->id,
                         'status' => 'active',
                         'date_activated' => date('Y-m-d'),
-                    ]);
-                    if ($config['allow_cashback'] == 'true')
+                    ]);*/
+                    /*if ($config['allow_cashback'] == 'true')
                     {
                         $cashback = $this->percentage($coupon->amount, $config['cashback_amount']);
                         if ($config['cashback_type'] == "fixed")
@@ -173,14 +181,14 @@ class UserController extends Controller
                             "type" => 'task_commission',
                             "day" => date("Y-m-d")
                         ]);
-                    }
+                    }*/
                     Auth::login($user);
-                    return redirect()->intended(route('user.dashboard'));
-                }
-                return back()->withErrors(['error' => 'This coupon cannot be used for this activation!']);
-            }
+                    return redirect("/users/invoices/{$invoice->id}");
+                //}
+                //return back()->withErrors(['error' => 'This coupon cannot be used for this activation!']);
+            //}
 
-            return back()->withErrors(['error' => 'Invalid coupon or already used!']);
+            //return back()->withErrors(['error' => 'Invalid coupon or already used!']);
         }
 
         return back()->withErrors(['error' => 'You cannot register an account at the moment.']);
@@ -357,5 +365,31 @@ class UserController extends Controller
         return $status === Password::PASSWORD_RESET
                     ? back()->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
+    }
+
+    public function showInvoice($invoice_id)
+    {
+        $invoice = Invoice::find($invoice_id);
+        return view('users.invoice', ['invoice' => $invoice]);
+    }
+
+    public function invoices()
+    {
+        $invoices = Invoice::where('user_id', auth()->id())->get();
+        return view('users.invoices', ['invoices' => $invoices]);
+    }
+
+    public function generateInvoice($course_id)
+    {
+        $course = Course::find($course_id);
+        $invoice = Invoice::create([
+            'user_id' => auth()->id(),
+            'course_id' => $course_id,
+            'invoice_number' => date('yhmids'),
+            'description' => 'Course Activation',
+            'amount' => $course->amount,
+            'status' => "unpaid",
+        ]);
+        return redirect("/users/invoices/{$invoice->id}");
     }
 }

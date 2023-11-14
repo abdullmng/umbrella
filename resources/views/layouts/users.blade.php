@@ -136,8 +136,10 @@
 
         <div class="col-md-auto">
           <div class="d-grid d-sm-flex gap-3">
+            @if (!auth()->check())
             <a class="btn btn-primary" href="{{ route('user.login') }}">Login</a>
             <a class="btn btn-ghost-light btn-pointer" href="{{ route('user.register') }}">Sign up</a>
+            @endif
           </div>
         </div>
         <!-- End Col -->
@@ -153,7 +155,7 @@
                 <!-- List -->
                 <ul class="list-unstyled list-py-2 mb-0">
 
-                    <li><a class="link link-light link-light-75" href="#">
+                    <li><a class="link link-light link-light-75" href="/hub">
                         <div class="flex-grow-1 ms-2">
                         <span>Umbrella Hub</span>
                         </div>

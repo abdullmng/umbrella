@@ -46,7 +46,8 @@
                   <input type="hidden" name="course_id" value="{{ $course->id }}">
                 </div>
                 <div class="mb-4">
-                  <button type="submit" class="btn btn-primary w-100">Activate Course</button>
+                  <button type="submit" class="btn btn-primary w-100 mb-3">Activate Course</button>
+                  <a href="/users/generate-invoice/{{ $course->id }}" class="btn btn-warning w-100">Buy Course Now</a>
                 </div>
               </form>
             @endif

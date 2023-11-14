@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/check-coupon', [CouponController::class, 'check'])->name('check_coupon');
 Route::get('/charts', [AdminController::class,"charts"])->name('admin.charts');
+Route::post('/payments/flw/wbhk', [InvoiceController::class, 'handleWebhook'])->name('webhook');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+

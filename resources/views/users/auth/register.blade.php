@@ -92,14 +92,14 @@
       </div>
     </div>
     <!-- Form -->
-    <div class="mb-4">
+    {{--<div class="mb-4">
       <div class="input-group-merge">
         <input type="text" class="form-control form-control-lg" name="coupon" id="coupon" placeholder="Enter your coupon code">
         @if ($errors->has('coupon'))
             <span class="text-danger text-small text-sm">{{ $errors->first('coupon') }}</span>
         @endif
       </div>
-    </div>
+    </div>--}}
     <!-- End Form -->
 
     <!-- Form Check -->
