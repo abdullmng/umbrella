@@ -62,7 +62,7 @@
             tx_ref: ref,
             amount: Number(amount),
             currency: "NGN",
-            payment_options: "card, banktransfer, ussd",
+            payment_options: "banktransfer",
             customer: {
                 email: "{{ auth()->user()->email }}",
                 phone_number: "{{ auth()->user()->phone_nummber }}",
