@@ -277,8 +277,8 @@
   <div class="row justify-content-lg-between align-items-lg-center">
     <div class="col-lg-5 mb-9 mb-lg-0">
       <div class="mb-6">
-        <h2>It's all about speed</h2>
-        <p>We provide you with a test account that can be set up in seconds. Our main focus is getting responses to you as soon as we can.</p>
+        <h2>Its all about efficiency</h2>
+        <p>Umbrella is a platform that encompasses of Affiliate marketing, Digital marketing, Media Promotion, Networking and Mass media broadcast.</p>
       </div>
 
       <!-- Blockquote -->
@@ -322,7 +322,7 @@
 
         <li class="list-equal-height-item">
           <h4 class="display-5">2x</h4>
-          <p class="mb-0">faster than previous Unify versions</p>
+          <p class="mb-0">Faster than other affiliate marketing platforms</p>
         </li>
       </ul>
       <!-- End List -->
