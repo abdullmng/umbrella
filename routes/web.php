@@ -108,6 +108,7 @@ Route::prefix('users')->group(function () {
         Route::post('/dashboard', [UserController::class, 'upload'])->name('user.upload');
         Route::post('/earn', [EarningController::class, 'earn'])->name('user.earn');
         Route::post('/withdrawals', [WithdrawalController::class, 'withdraw'])->name('user.withdraw');
+        Route::post('/courses/{course_id}', [UserController::class, 'activateCourse'])->name('user.activate_course');
 
         //vendor routes
         Route::prefix('/vendor')->group(function () {

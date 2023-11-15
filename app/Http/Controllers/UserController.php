@@ -84,6 +84,34 @@ class UserController extends Controller
         return Coupon::where('code', $code)->first();
     }
 
+    public function activateCourse($course_id, Request $request)
+    {
+        $request->validate(['coupon' => 'required']);
+        $course = Course::find($course_id);
+        $code  = $request->coupon;
+        $user = auth()->user();
+
+        $coupon = $this->getCoupon($code);
+        if (!is_null($coupon) && $coupon->status == 'unused')
+        {
+            if ($course->amount == $coupon->amount)
+            {
+                $coupon->update([
+                    'status' => 'used',
+                    'user_id' => $user->id
+                ]);
+                UserCourse::create([
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'status' => 'active',
+                    'date_activated' => date('Y-m-d'),
+                ]);
+            }
+            return back()->withErrors(['error' => 'This coupon cannot be used for this activation!']);
+        }
+        return back()->withErrors(['error' => 'Invalid coupon or already used!']);
+    }
+
     public function store(Request $request)
     {
         if ($this->config['allow_registration'] == "true")

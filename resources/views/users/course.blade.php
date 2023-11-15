@@ -38,13 +38,19 @@
             @if (auth()->user()->user_courses->where('course_id', $course->id)->first())
               <a href="#" class="btn btn-primary w-100">Join Course Channel</a>
             @else
-              <form action="" method="post">
+              <form action="/users/courses/{{ $course->id }}" method="post">
                 @csrf
                 <div class="mb-4">
                   <label for="coupon">Coupon</label>
                   <input type="text" name="coupon" id="coupon" class="form-control" placeholder="Enter Coupon Code">
                   <input type="hidden" name="course_id" value="{{ $course->id }}">
+                  @if ($errors->has('coupon'))
+                      <span class="text-sm text-small text-danger">{{ $errors->first('coupon') }}</span>
+                  @endif
                 </div>
+                @if ($errors->has('error'))
+                      <div class="alert alert-danger">{{ $errors->first('error') }}</span>
+                  @endif
                 <div class="mb-4">
                   <button type="submit" class="btn btn-primary w-100 mb-3">Activate Course</button>
                   <a href="/users/generate-invoice/{{ $course->id }}" class="btn btn-warning w-100">Buy Course Now</a>
