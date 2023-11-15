@@ -106,6 +106,7 @@ class UserController extends Controller
                     'status' => 'active',
                     'date_activated' => date('Y-m-d'),
                 ]);
+                return back()->with('success', 'course activated');
             }
             return back()->withErrors(['error' => 'This coupon cannot be used for this activation!']);
         }

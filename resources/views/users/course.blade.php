@@ -35,6 +35,9 @@
         <div class="mb-4">
           <h3 class="mb-6">NGN {{ number_format($course->amount) }}</h3>
           @if (auth()->check())
+            @if (session()->has('success'))
+                <div class="alert alert-success">{{ session('success') }}</span>
+            @endif
             @if (auth()->user()->user_courses->where('course_id', $course->id)->first())
               <a href="#" class="btn btn-primary w-100">Join Course Channel</a>
             @else
